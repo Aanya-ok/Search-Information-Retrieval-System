@@ -25,7 +25,7 @@ int countOccurrences(const std::string& text, const std::string& word) {
     return count;
 }
 
-// Linear search: check EVERY document one by one
+// Linear search
 void linearSearch(const std::vector<Document>& docs, const std::string& keyword) {
     std::string key = toLowerCase(keyword);
     int found = 0;

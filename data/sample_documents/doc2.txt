@@ -1,0 +1,6 @@
+id: 2
+title: Tree Traversal Algorithms
+category: DSA
+year: 2020
+
+Tree traversal visits every node of a tree. Inorder, preorder and postorder are the common traversal methods for a binary tree.

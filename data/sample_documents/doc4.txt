@@ -1,0 +1,6 @@
+id: 4
+title: Introduction to Relational Databases
+category: DBMS
+year: 2019
+
+A relational database stores data in tables. SQL is used to query data. Indexes such as a B tree make search faster.

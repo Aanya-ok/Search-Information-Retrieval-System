@@ -1,0 +1,6 @@
+id: 1
+title: Binary Search Trees
+category: DSA
+year: 2021
+
+A binary search tree stores keys in sorted order. Each node has a left and right child. Search, insert and delete take O(log n) on a balanced tree.

@@ -1,0 +1,6 @@
+id: 5
+title: Object Oriented Programming in Java
+category: OOP
+year: 2018
+
+Java supports inheritance, polymorphism and encapsulation. A class is a blueprint for objects.

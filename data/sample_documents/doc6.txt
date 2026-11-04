@@ -1,0 +1,6 @@
+id: 6
+title: Sorting Algorithms Overview
+category: DSA
+year: 2023
+
+Merge sort and quick sort run in O(n log n) on average. Bubble sort and insertion sort are simpler but slower.

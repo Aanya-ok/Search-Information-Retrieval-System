@@ -1,0 +1,6 @@
+id: 3
+title: Hash Tables and Collisions
+category: DSA
+year: 2022
+
+A hash table maps keys to values using a hash function. Collisions are handled by chaining or probing.
