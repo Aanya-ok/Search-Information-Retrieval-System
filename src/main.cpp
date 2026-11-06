@@ -4,9 +4,7 @@
 #include "document.h"
 #include "search.h"
 #include "loader.h"
-
-// small collection
-
+#include "tokenizer.h"
 
 void listAll(const std::vector<Document>& docs) {
     for (size_t i = 0; i < docs.size(); i++) {
@@ -15,8 +13,23 @@ void listAll(const std::vector<Document>& docs) {
     }
 }
 
+void showTokens(const std::string& text) {
+    std::vector<std::string> tokens = tokenize(text);
+    std::cout << "All tokens       : ";
+    for (size_t i = 0; i < tokens.size(); i++) {
+        std::cout << tokens[i] << " | ";
+    }
+
+    std::vector<std::string> filtered = removeStopWords(tokens);
+    std::cout << "\nWithout stopwords: ";
+    for (size_t i = 0; i < filtered.size(); i++) {
+        std::cout << filtered[i] << " | ";
+    }
+    std::cout << "\n";
+}
+
 int main() {
-        std::vector<std::string> files;
+    std::vector<std::string> files;
     files.push_back("data/sample_documents/doc1.txt");
     files.push_back("data/sample_documents/doc2.txt");
     files.push_back("data/sample_documents/doc3.txt");
@@ -26,6 +39,7 @@ int main() {
 
     std::vector<Document> docs = loadAllDocuments(files);
     std::cout << "Loaded " << docs.size() << " documents.\n";
+
     std::string choice;
 
     std::cout << "=====================================\n";
@@ -35,6 +49,7 @@ int main() {
     while (true) {
         std::cout << "\n1. List all documents\n";
         std::cout << "2. Search (linear search)\n";
+        std::cout << "3. Show tokens of a text (tokenizer demo)\n";
         std::cout << "0. Exit\n";
         std::cout << "Choice: ";
         std::getline(std::cin, choice);
@@ -47,6 +62,11 @@ int main() {
             std::getline(std::cin, keyword);
             std::cout << "\n";
             linearSearch(docs, keyword);
+        } else if (choice == "3") {
+            std::string text;
+            std::cout << "Enter text: ";
+            std::getline(std::cin, text);
+            showTokens(text);
         } else if (choice == "0") {
             std::cout << "Goodbye!\n";
             break;
