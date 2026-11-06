@@ -5,6 +5,7 @@
 #include "search.h"
 #include "loader.h"
 #include "tokenizer.h"
+#include "hash_table.h"
 
 void listAll(const std::vector<Document>& docs) {
     for (size_t i = 0; i < docs.size(); i++) {
@@ -26,6 +27,32 @@ void showTokens(const std::string& text) {
         std::cout << filtered[i] << " | ";
     }
     std::cout << "\n";
+}
+
+// Count how many times each word appears, using our own hash table
+void hashTableDemo() {
+    std::string text;
+    std::cout << "Enter a sentence: ";
+    std::getline(std::cin, text);
+
+    HashTable table(4);
+    std::vector<std::string> words = removeStopWords(tokenize(text));
+
+    for (size_t i = 0; i < words.size(); i++) {
+        int count = 0;
+        if (table.search(words[i], count)) {
+            table.insert(words[i], count + 1);
+        } else {
+            table.insert(words[i], 1);
+        }
+    }
+
+    table.print();
+    std::cout << "\nWords stored  : " << table.size() << "\n";
+    std::cout << "Buckets       : " << table.bucketCount() << "\n";
+    std::cout << "Load factor   : " << table.loadFactor() << "\n";
+    std::cout << "Collisions    : " << table.collisions() << "\n";
+    std::cout << "Longest chain : " << table.longestChain() << "\n";
 }
 
 int main() {
@@ -50,6 +77,7 @@ int main() {
         std::cout << "\n1. List all documents\n";
         std::cout << "2. Search (linear search)\n";
         std::cout << "3. Show tokens of a text (tokenizer demo)\n";
+        std::cout << "4. Word counter (hash table demo)\n";
         std::cout << "0. Exit\n";
         std::cout << "Choice: ";
         std::getline(std::cin, choice);
@@ -67,6 +95,8 @@ int main() {
             std::cout << "Enter text: ";
             std::getline(std::cin, text);
             showTokens(text);
+        } else if (choice == "4") {
+            hashTableDemo();
         } else if (choice == "0") {
             std::cout << "Goodbye!\n";
             break;
